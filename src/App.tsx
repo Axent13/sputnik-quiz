@@ -1,10 +1,8 @@
 import React from 'react';
-import { Typography } from 'antd';
-
-const { Title } = Typography;
+import QuizPage from 'pages/QuizPage';
 
 const App: React.FC = () => {
-  return <Title>Hello World</Title>;
+  return <QuizPage />;
 };
 
 export default App;
