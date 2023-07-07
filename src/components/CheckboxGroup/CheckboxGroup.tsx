@@ -1,24 +1,29 @@
-import { Checkbox } from 'antd';
+import { Checkbox, Form } from 'antd';
 import React, { useState } from 'react';
 
 interface IOptions {
   options: string[];
+  questionNumber: number;
 }
 
-const CheckboxGroup = ({ options }: IOptions) => {
+const CheckboxGroup = ({ options, questionNumber }: IOptions) => {
   const [activeCheckbox, setActiveCheckbox] = useState(null);
 
   return (
     <div>
       {options.map((option, index) => (
-        <div key={option}>
+        <Form.Item
+          key={option}
+          label={`Вопрос №${questionNumber}`}
+          name={`question${questionNumber}`}
+        >
           <Checkbox
             checked={index === activeCheckbox}
-            onClick={() => setActiveCheckbox(index)}
+            onChange={() => setActiveCheckbox(index)}
           >
             {option}
           </Checkbox>
-        </div>
+        </Form.Item>
       ))}
     </div>
   );
