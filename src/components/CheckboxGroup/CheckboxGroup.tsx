@@ -1,10 +1,8 @@
 import { Checkbox } from 'antd';
 import React, { useState } from 'react';
 
-type TOption = { label: string; value: string };
-
 interface IOptions {
-  options: TOption[];
+  options: string[];
 }
 
 const CheckboxGroup = ({ options }: IOptions) => {
@@ -13,12 +11,12 @@ const CheckboxGroup = ({ options }: IOptions) => {
   return (
     <div>
       {options.map((option, index) => (
-        <div key={option.label}>
+        <div key={option}>
           <Checkbox
             checked={index === activeCheckbox}
             onClick={() => setActiveCheckbox(index)}
           >
-            {option.label}
+            {option}
           </Checkbox>
         </div>
       ))}
