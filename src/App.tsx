@@ -1,7 +1,7 @@
 import React from 'react';
 import QuizPage from 'pages/QuizPage';
 
-const App: React.FC = () => {
+const App = () => {
   return <QuizPage />;
 };
 
