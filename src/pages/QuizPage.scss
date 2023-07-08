@@ -9,7 +9,11 @@
   }
 
   &__button {
-    margin-top: 10px;
+    margin: 10px 0 10px;
     text-align: center;
+  }
+
+  &__result-card {
+    min-height: 200px;
   }
 }

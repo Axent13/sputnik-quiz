@@ -6,6 +6,7 @@ import { useTypedSelector } from 'hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { finishQuiz, getCorrectAnswers } from 'store/actions/answers';
 import './QuizPage.scss';
+import ResultCard from 'components/ResultCard/ResultCard';
 
 const QuizPage = () => {
   const state = useTypedSelector((state) => state.answers);
@@ -36,9 +37,19 @@ const QuizPage = () => {
           />
         ))}
         <div className='quizpage__button'>
-          <Button type='primary' htmlType='button' onClick={() => onFinish()}>
-            Отправить
+          <Button
+            type='primary'
+            htmlType='button'
+            onClick={() => onFinish()}
+            disabled={state.isFinished}
+          >
+            Проверить
           </Button>
+        </div>
+        <div className='quizpage__result-card'>
+          {state.isFinished && (
+            <ResultCard passed={state.passed} failed={state.failed} />
+          )}
         </div>
       </Layout.Content>
     </Layout>
