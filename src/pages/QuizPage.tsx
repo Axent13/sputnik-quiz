@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Button, Layout, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Button, Layout, Pagination, Typography } from 'antd';
 import Question from 'components/Question/Question';
 import { questions } from 'questions';
 import { useTypedSelector } from 'hooks/useTypedSelector';
@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { finishQuiz, getCorrectAnswers } from 'store/actions/answers';
 import './QuizPage.scss';
 import ResultCard from 'components/ResultCard/ResultCard';
+import { paginate } from '../utils/paginate';
 
 const QuizPage = () => {
   const state = useTypedSelector((state) => state.answers);
@@ -22,20 +23,41 @@ const QuizPage = () => {
     console.log('Sending state:', state);
   };
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const questionsOnPageCount = 5;
+  const totalPages = Math.ceil(questions.length / questionsOnPageCount);
+
+  const cropedQuestions = paginate(
+    questions,
+    currentPage,
+    questionsOnPageCount
+  );
+
+  const onPageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <Layout>
       <Layout.Content className='quizpage__content'>
         <Typography.Title className='quizpage__title'>
           Тест на знание Git
         </Typography.Title>
-        {questions.map((question, index) => (
+        {cropedQuestions.map((question, index) => (
           <Question
             key={question.text}
             text={question.text}
             answers={question.answers}
-            questionNumber={index + 1}
+            questionNumber={
+              index + questionsOnPageCount * (currentPage - 1) + 1
+            }
           />
         ))}
+        <Pagination
+          current={currentPage}
+          onChange={onPageChange}
+          total={totalPages * 10}
+        />
         <div className='quizpage__button'>
           <Button
             type='primary'
