@@ -1,0 +1,3 @@
+.question{margin:10px 0}.question__checkboxes{display:flex;flex-direction:column}
+.quizpage__content{max-width:400px;margin:10px auto 20px}.quizpage__title{text-align:center}.quizpage__button{margin:10px 0 10px;text-align:center}.quizpage__result-card{min-height:200px}
+*{margin:0;padding:0;box-sizing:border-box}
