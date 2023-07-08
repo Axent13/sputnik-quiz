@@ -10,3 +10,18 @@ export const addAnswer = (data: {
     },
   };
 };
+
+export const getCorrectAnswers = (data: { correctAnswers: number[] }) => {
+  return {
+    type: 'GET_CORRECT_ANSWERS',
+    payload: {
+      correctAnswers: data.correctAnswers,
+    },
+  };
+};
+
+export const finishQuiz = () => {
+  return {
+    type: 'FINISH_QUIZ',
+  };
+};

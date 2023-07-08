@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Form, Layout, Typography } from 'antd';
 import Question from 'components/Question/Question';
 import { questions } from 'questions';
 import { useTypedSelector } from 'hooks/useTypedSelector';
+import { useDispatch } from 'react-redux';
+import { finishQuiz, getCorrectAnswers } from 'store/actions/answers';
 
 const QuizPage = () => {
   const state = useTypedSelector((state) => state.answers);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const correctAnswers = questions.map((question) => question.correctAnswer);
+    dispatch(getCorrectAnswers({ correctAnswers }));
+  }, []);
 
   const onFinish = () => {
+    dispatch(finishQuiz());
     console.log('Sending state:', state);
   };
 

@@ -15,7 +15,7 @@ const CheckboxGroup = ({ options, questionNumber }: IOptions) => {
   const handleCheckboxClick = (index: number, questionNumber: number) => {
     setActiveCheckbox(index);
     dispatch(
-      addAnswer({ questionNumber: questionNumber, userAnswer: index + 1 })
+      addAnswer({ questionNumber: questionNumber - 1, userAnswer: index + 1 })
     );
   };
 
