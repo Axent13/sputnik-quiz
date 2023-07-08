@@ -1,6 +1,7 @@
 import React from 'react';
-import { Typography } from 'antd';
+import { Card, Typography } from 'antd';
 import CheckboxGroup from 'components/CheckboxGroup/CheckboxGroup';
+import './question.scss';
 
 interface IQuestion {
   text: string;
@@ -10,9 +11,13 @@ interface IQuestion {
 
 const Question = ({ text, answers, questionNumber }: IQuestion) => {
   return (
-    <div>
-      <Typography.Paragraph>{text}</Typography.Paragraph>
-      <CheckboxGroup options={answers} questionNumber={questionNumber} />
+    <div className='question'>
+      <Card title={`Вопрос №${questionNumber}`}>
+        <Typography.Paragraph>{text}</Typography.Paragraph>
+        <div className='question__checkboxes'>
+          <CheckboxGroup options={answers} questionNumber={questionNumber} />
+        </div>
+      </Card>
     </div>
   );
 };

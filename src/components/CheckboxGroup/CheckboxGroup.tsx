@@ -1,4 +1,4 @@
-import { Checkbox, Form } from 'antd';
+import { Checkbox } from 'antd';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAnswer } from 'store/actions/answers';
@@ -20,24 +20,19 @@ const CheckboxGroup = ({ options, questionNumber }: IOptions) => {
   };
 
   return (
-    <div>
+    <>
       {options.map((option, index) => (
-        <Form.Item
+        <Checkbox
           key={option}
-          label={`Вопрос №${questionNumber}`}
-          name={`question${questionNumber}`}
+          checked={index === activeCheckbox}
+          onClick={() => {
+            handleCheckboxClick(index, questionNumber);
+          }}
         >
-          <Checkbox
-            checked={index === activeCheckbox}
-            onClick={() => {
-              handleCheckboxClick(index, questionNumber);
-            }}
-          >
-            {option}
-          </Checkbox>
-        </Form.Item>
+          {option}
+        </Checkbox>
       ))}
-    </div>
+    </>
   );
 };
 
