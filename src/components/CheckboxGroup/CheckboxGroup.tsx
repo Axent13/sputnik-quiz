@@ -1,5 +1,7 @@
 import { Checkbox, Form } from 'antd';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addAnswer } from 'store/actions/answers';
 
 interface IOptions {
   options: string[];
@@ -8,6 +10,14 @@ interface IOptions {
 
 const CheckboxGroup = ({ options, questionNumber }: IOptions) => {
   const [activeCheckbox, setActiveCheckbox] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleCheckboxClick = (index: number, questionNumber: number) => {
+    setActiveCheckbox(index);
+    dispatch(
+      addAnswer({ questionNumber: questionNumber, userAnswer: index + 1 })
+    );
+  };
 
   return (
     <div>
@@ -19,7 +29,9 @@ const CheckboxGroup = ({ options, questionNumber }: IOptions) => {
         >
           <Checkbox
             checked={index === activeCheckbox}
-            onChange={() => setActiveCheckbox(index)}
+            onClick={() => {
+              handleCheckboxClick(index, questionNumber);
+            }}
           >
             {option}
           </Checkbox>

@@ -2,10 +2,13 @@ import React from 'react';
 import { Button, Form, Layout, Typography } from 'antd';
 import Question from 'components/Question/Question';
 import { questions } from 'questions';
+import { useTypedSelector } from 'hooks/useTypedSelector';
 
 const QuizPage = () => {
-  const onFinish = (values: unknown) => {
-    console.log('Sending values:', values);
+  const state = useTypedSelector((state) => state.answers);
+
+  const onFinish = () => {
+    console.log('Sending state:', state);
   };
 
   return (
