@@ -20,7 +20,6 @@ const QuizPage = () => {
 
   const onFinish = () => {
     dispatch(finishQuiz());
-    console.log('Sending state:', state);
   };
 
   const [currentPage, setCurrentPage] = useState(1);

@@ -29,15 +29,12 @@ export const answersReducer = (
 ): IAnswersState => {
   switch (action.type) {
     case ADD_ANSWER:
-      console.log('adding answer', action);
       state.userAnswers[action.payload.questionNumber] =
         action.payload.userAnswer;
       return state;
     case GET_CORRECT_ANSWERS:
-      console.log('getting correct answers');
       return { ...state, correctAnswers: action.payload.correctAnswers };
     case FINISH_QUIZ:
-      console.log('finishing quiz');
       state.passed = 0;
       state.failed = 0;
       state.correctAnswers.forEach((answer, index) => {
