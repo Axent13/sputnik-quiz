@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import { finishQuiz, getCorrectAnswers } from 'store/actions/answers';
 import './QuizPage.scss';
 import ResultCard from 'components/ResultCard/ResultCard';
-import { paginate } from '../utils/paginate';
+import { paginate } from '../../utils/paginate';
+import { NavLink } from 'react-router-dom';
 
 const QuizPage = () => {
   const state = useTypedSelector((state) => state.answers);
@@ -38,6 +39,9 @@ const QuizPage = () => {
 
   return (
     <Layout>
+      <Layout.Header>
+        <NavLink to='/'>Выйти</NavLink>
+      </Layout.Header>
       <Layout.Content className='quizpage__content'>
         <Typography.Title className='quizpage__title'>
           Тест на знание Git
