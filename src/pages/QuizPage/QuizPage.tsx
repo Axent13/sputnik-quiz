@@ -5,10 +5,11 @@ import { questions } from 'questions';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import { finishQuiz, getCorrectAnswers } from 'store/actions/answers';
-import './QuizPage.scss';
+import styles from './QuizPage.module.scss';
 import ResultCard from 'components/ResultCard/ResultCard';
 import { paginate } from '../../utils/paginate';
 import { NavLink } from 'react-router-dom';
+import cn from 'classnames';
 
 const QuizPage = () => {
   const state = useTypedSelector((state) => state.answers);
@@ -42,8 +43,8 @@ const QuizPage = () => {
       <Layout.Header>
         <NavLink to='/'>Выйти</NavLink>
       </Layout.Header>
-      <Layout.Content className='quizpage__content'>
-        <Typography.Title className='quizpage__title'>
+      <Layout.Content className={cn(styles['quizpage__content'])}>
+        <Typography.Title className={cn(styles['quizpage__title'])}>
           Тест на знание Git
         </Typography.Title>
         {cropedQuestions.map((question, index) => (
@@ -61,7 +62,7 @@ const QuizPage = () => {
           onChange={onPageChange}
           total={totalPages * 10}
         />
-        <div className='quizpage__button'>
+        <div className={cn(styles['quizpage__button'])}>
           <Button
             type='primary'
             htmlType='button'
@@ -71,7 +72,7 @@ const QuizPage = () => {
             Проверить
           </Button>
         </div>
-        <div className='quizpage__result-card'>
+        <div className={cn(styles['quizpage__result-card'])}>
           {state.isFinished && (
             <ResultCard passed={state.passed} failed={state.failed} />
           )}
