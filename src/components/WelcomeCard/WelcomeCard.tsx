@@ -11,7 +11,7 @@ const WelcomeCard = ({ onClick }: IWelcomeCard) => {
   return (
     <Card className={cn(styles['welcome-card'])}>
       <Typography.Title className={cn(styles['welcome-card__title'])}>
-        Sputnik Quiz!
+        Sputnik Quiz
       </Typography.Title>
       <Typography.Paragraph className={cn(styles['welcome-card__text'])}>
         Для начала работы необходимо авторизоваться в системе
