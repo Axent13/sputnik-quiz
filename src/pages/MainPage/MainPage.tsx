@@ -1,9 +1,9 @@
 import { Button, Layout, Row } from 'antd';
-import AuthModal from 'components/AuthModal/AuthModal';
 import LoginModal from 'components/LoginModal/LoginModal';
 import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import styles from './MainPage.module.scss';
+import cn from 'classnames';
 
 const MainPage = () => {
   const [isLogining, setIsLogining] = useState(false);
@@ -58,7 +58,11 @@ const MainPage = () => {
           onFinishFailed={failingRegistration}
         />
       )}
-      <Row align={'middle'} justify={'center'}>
+      <Row
+        align={'middle'}
+        justify={'center'}
+        className={cn(styles['main-page'])}
+      >
         <Button
           type='primary'
           shape='round'
