@@ -1,39 +1,64 @@
 import { Button, Layout } from 'antd';
 import AuthModal from 'components/AuthModal/AuthModal';
 import LoginModal from 'components/LoginModal/LoginModal';
+import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const MainPage = () => {
-  const [isLogining, setIsLogining] = useState(true);
+  const [isLogining, setIsLogining] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const submitForm = (values: unknown) => {
+  const submitLoginForm = (values: unknown) => {
     setIsModalOpened(false);
-    console.log('submitting data', values);
+    console.log('submitting Login data', values);
+  };
+
+  const submitRegistrationForm = (values: unknown) => {
+    setIsModalOpened(false);
+    console.log('submitting Registration data', values);
   };
 
   const closeModal = () => {
     setIsModalOpened(false);
   };
 
-  const sucessingFinish = () => {
-    console.log('Success Finish!');
+  const successingLogin = () => {
+    console.log('Success Login!');
   };
 
-  const failingFinish = () => {
-    console.log('Finish failed...');
+  const failingLogin = () => {
+    console.log('Login failed...');
+  };
+
+  const successingRegistration = () => {
+    console.log('Success Registration!');
+  };
+
+  const failingRegistration = () => {
+    console.log('Registration failed...');
   };
 
   return (
     <Layout.Content>
-      <LoginModal
-        onLogin={submitForm}
-        onCancel={closeModal}
-        isModalOpened={isModalOpened}
-        onFinish={sucessingFinish}
-        onFinishFailed={failingFinish}
-      />
+      {isLogining ? (
+        <LoginModal
+          onLogin={submitLoginForm}
+          onCancel={closeModal}
+          isModalOpened={isModalOpened}
+          onFinish={successingLogin}
+          onFinishFailed={failingLogin}
+        />
+      ) : (
+        <RegistrationModal
+          onRegistration={submitRegistrationForm}
+          onCancel={closeModal}
+          isModalOpened={isModalOpened}
+          onFinish={successingRegistration}
+          onFinishFailed={failingRegistration}
+        />
+      )}
+
       <Button
         type='primary'
         shape='round'
