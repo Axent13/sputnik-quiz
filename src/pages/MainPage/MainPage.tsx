@@ -4,6 +4,7 @@ import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
 import React, { useState } from 'react';
 import styles from './MainPage.module.scss';
 import cn from 'classnames';
+import WelcomeCard from 'components/WelcomeCard/WelcomeCard';
 
 const MainPage = () => {
   const [isLogining, setIsLogining] = useState(false);
@@ -63,15 +64,11 @@ const MainPage = () => {
         justify={'center'}
         className={cn(styles['main-page'])}
       >
-        <Button
-          type='primary'
-          shape='round'
+        <WelcomeCard
           onClick={() => {
             setIsModalOpened(true);
           }}
-        >
-          Войти
-        </Button>
+        />
       </Row>
     </Layout.Content>
   );

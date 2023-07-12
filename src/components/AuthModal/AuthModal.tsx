@@ -21,6 +21,7 @@ const AuthModal = ({
   return (
     <Modal
       open={isOpened}
+      centered
       title={title}
       onOk={onOk}
       onCancel={onCancel}
