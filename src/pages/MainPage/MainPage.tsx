@@ -1,4 +1,4 @@
-import { Button, Layout } from 'antd';
+import { Button, Layout, Row } from 'antd';
 import AuthModal from 'components/AuthModal/AuthModal';
 import LoginModal from 'components/LoginModal/LoginModal';
 import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
@@ -58,16 +58,17 @@ const MainPage = () => {
           onFinishFailed={failingRegistration}
         />
       )}
-
-      <Button
-        type='primary'
-        shape='round'
-        onClick={() => {
-          setIsModalOpened(true);
-        }}
-      >
-        Войти
-      </Button>
+      <Row align={'middle'} justify={'center'}>
+        <Button
+          type='primary'
+          shape='round'
+          onClick={() => {
+            setIsModalOpened(true);
+          }}
+        >
+          Войти
+        </Button>
+      </Row>
     </Layout.Content>
   );
 };
