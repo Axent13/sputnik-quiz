@@ -1,4 +1,4 @@
-import { Button, Layout, Row } from 'antd';
+import { Layout, Row } from 'antd';
 import LoginModal from 'components/LoginModal/LoginModal';
 import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
 import React, { useState } from 'react';
@@ -13,17 +13,16 @@ interface IUserLoginInfo {
 }
 
 const MainPage = () => {
-  const [isLogining, setIsLogining] = useState(false);
+  const [isLogining, setIsLogining] = useState(true);
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   const submitLoginForm = (values: IUserLoginInfo) => {
     setIsModalOpened(false);
-    console.log('submitting Login data', values);
+    authService.login(values);
   };
 
-  const submitRegistrationForm = (values: IUserLoginInfo) => {
+  const submitRegistrationForm = async (values: IUserLoginInfo) => {
     setIsModalOpened(false);
-    console.log('submitting Registration data', values);
     authService.register(values);
   };
 

@@ -46,11 +46,14 @@ const LoginModal = ({
         wrapperCol={{ span: 20 }}
       >
         <Form.Item
-          label='Логин'
-          name='login'
-          rules={[{ required: true, message: 'Введите логин!' }]}
+          label='Email'
+          name='email'
+          rules={[
+            { required: true, message: 'Введите ваш Email!' },
+            { type: 'email', message: 'Email неккоректен!' },
+          ]}
         >
-          <Input />
+          <Input type='email' />
         </Form.Item>
         <Form.Item
           label='Пароль'
