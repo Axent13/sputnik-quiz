@@ -5,19 +5,26 @@ import React, { useState } from 'react';
 import styles from './MainPage.module.scss';
 import cn from 'classnames';
 import WelcomeCard from 'components/WelcomeCard/WelcomeCard';
+import authService from 'services/auth.service';
+
+interface IUserLoginInfo {
+  email: string;
+  password: string;
+}
 
 const MainPage = () => {
   const [isLogining, setIsLogining] = useState(false);
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const submitLoginForm = (values: unknown) => {
+  const submitLoginForm = (values: IUserLoginInfo) => {
     setIsModalOpened(false);
     console.log('submitting Login data', values);
   };
 
-  const submitRegistrationForm = (values: unknown) => {
+  const submitRegistrationForm = (values: IUserLoginInfo) => {
     setIsModalOpened(false);
     console.log('submitting Registration data', values);
+    authService.register(values);
   };
 
   const closeModal = () => {
