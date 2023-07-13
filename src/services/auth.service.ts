@@ -16,13 +16,11 @@ interface IUserLoginInfo {
 
 const authService = {
   register: async ({ email, password }: IUserLoginInfo) => {
-    console.log('in rigister');
     const { data } = await httpAuth.post(`accounts:signUp`, {
       email,
       password,
       returnSecureToken: true,
     });
-    console.log('data from authService.register:', data);
     return data;
   },
   login: async ({ email, password }: IUserLoginInfo) => {

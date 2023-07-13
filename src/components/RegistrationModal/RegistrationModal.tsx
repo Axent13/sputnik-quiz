@@ -56,13 +56,6 @@ const RegistrationModal = ({
           <Input type='email' />
         </Form.Item>
         <Form.Item
-          label='Логин'
-          name='login'
-          rules={[{ required: true, message: 'Придумайте логин!' }]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
           label='Пароль'
           name='password'
           rules={[{ required: true, message: 'Придумайте пароль!' }]}
