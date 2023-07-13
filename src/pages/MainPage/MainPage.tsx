@@ -55,6 +55,8 @@ const MainPage = () => {
           isModalOpened={isModalOpened}
           onFinish={successingLogin}
           onFinishFailed={failingLogin}
+          switchFormText='Зарегистрироваться'
+          onSwitchForm={() => setIsLogining(false)}
         />
       ) : (
         <RegistrationModal
@@ -63,6 +65,8 @@ const MainPage = () => {
           isModalOpened={isModalOpened}
           onFinish={successingRegistration}
           onFinishFailed={failingRegistration}
+          switchFormText='Войти'
+          onSwitchForm={() => setIsLogining(true)}
         />
       )}
       <Row

@@ -8,6 +8,8 @@ interface IRegistrationModal {
   isModalOpened: boolean;
   onFinish(): void;
   onFinishFailed(): void;
+  switchFormText: string;
+  onSwitchForm(): void;
 }
 
 const RegistrationModal = ({
@@ -16,6 +18,8 @@ const RegistrationModal = ({
   isModalOpened,
   onFinish,
   onFinishFailed,
+  switchFormText,
+  onSwitchForm,
 }: IRegistrationModal) => {
   const [form] = Form.useForm();
 
@@ -36,6 +40,8 @@ const RegistrationModal = ({
       okText='Зарегистрироваться'
       title='Регистрация'
       isOpened={isModalOpened}
+      switchFormText={switchFormText}
+      onSwitchForm={onSwitchForm}
     >
       <Form
         form={form}

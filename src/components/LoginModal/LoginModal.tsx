@@ -8,6 +8,8 @@ interface ILoginModal {
   isModalOpened: boolean;
   onFinish(): void;
   onFinishFailed(): void;
+  switchFormText: string;
+  onSwitchForm(): void;
 }
 
 const LoginModal = ({
@@ -16,6 +18,8 @@ const LoginModal = ({
   isModalOpened,
   onFinish,
   onFinishFailed,
+  switchFormText,
+  onSwitchForm,
 }: ILoginModal) => {
   const [form] = Form.useForm();
 
@@ -36,6 +40,8 @@ const LoginModal = ({
       okText='Войти'
       title='Вход'
       isOpened={isModalOpened}
+      switchFormText={switchFormText}
+      onSwitchForm={onSwitchForm}
     >
       <Form
         form={form}

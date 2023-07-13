@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Modal } from 'antd';
+import { Button, Modal, Typography } from 'antd';
+import cn from 'classnames';
+import styles from './AuthModal.module.scss';
 
 interface IAuthModal {
   title: string;
@@ -8,6 +10,8 @@ interface IAuthModal {
   okText: string;
   isOpened: boolean;
   children: React.ReactNode;
+  switchFormText: string;
+  onSwitchForm(): void;
 }
 
 const AuthModal = ({
@@ -17,6 +21,8 @@ const AuthModal = ({
   okText,
   isOpened,
   children,
+  switchFormText,
+  onSwitchForm,
 }: IAuthModal) => {
   return (
     <Modal
@@ -29,6 +35,19 @@ const AuthModal = ({
         <Button key='submit' type='primary' onClick={onOk}>
           {okText}
         </Button>,
+        <Typography.Paragraph
+          key='switch'
+          className={cn(styles['auth-modal__switch-text'])}
+        >
+          или{' '}
+          <Button
+            type='link'
+            onClick={onSwitchForm}
+            className={cn(styles['auth-modal__switch-button'])}
+          >
+            {switchFormText}
+          </Button>
+        </Typography.Paragraph>,
       ]}
     >
       {children}
