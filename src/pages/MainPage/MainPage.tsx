@@ -6,6 +6,7 @@ import styles from './MainPage.module.scss';
 import cn from 'classnames';
 import WelcomeCard from 'components/WelcomeCard/WelcomeCard';
 import authService from 'services/auth.service';
+import localStorageService from 'services/localStorage.service';
 
 interface IUserLoginInfo {
   email: string;
@@ -16,14 +17,18 @@ const MainPage = () => {
   const [isLogining, setIsLogining] = useState(true);
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const submitLoginForm = (values: IUserLoginInfo) => {
+  const submitLoginForm = async (values: IUserLoginInfo) => {
     setIsModalOpened(false);
-    authService.login(values);
+    const data = await authService.login(values);
+    console.log(data);
+    localStorageService.setTokens(data);
   };
 
   const submitRegistrationForm = async (values: IUserLoginInfo) => {
     setIsModalOpened(false);
-    authService.register(values);
+    const data = await authService.register(values);
+    console.log(data);
+    localStorageService.setTokens(data);
   };
 
   const closeModal = () => {
