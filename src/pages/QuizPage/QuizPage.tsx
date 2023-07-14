@@ -4,7 +4,12 @@ import Question from 'components/Question/Question';
 import { questions } from 'questions';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
-import { finishQuiz, getCorrectAnswers } from 'store/actions/answers';
+import {
+  finishQuiz,
+  getCorrectAnswers,
+  restart,
+  startQuiz,
+} from 'store/actions/answers';
 import styles from './QuizPage.module.scss';
 import ResultCard from 'components/ResultCard/ResultCard';
 import { paginate } from '../../utils/paginate';
@@ -54,6 +59,15 @@ const QuizPage = () => {
     navigate('/');
   };
 
+  const onStartButtonClick = () => {
+    dispatch(startQuiz());
+    console.log(state);
+  };
+
+  const onRestartButtonClick = () => {
+    dispatch(restart());
+  };
+
   return (
     <Layout>
       <Layout.Header className={cn(styles['quiz-page__header'])}>
@@ -66,36 +80,55 @@ const QuizPage = () => {
         <Typography.Title className={cn(styles['quiz-page__title'])}>
           Тест на знание Git
         </Typography.Title>
-        {cropedQuestions.map((question, index) => (
-          <Question
-            key={question.text}
-            text={question.text}
-            answers={question.answers}
-            questionNumber={
-              index + questionsOnPageCount * (currentPage - 1) + 1
-            }
-          />
-        ))}
-        <Pagination
-          current={currentPage}
-          onChange={onPageChange}
-          total={totalPages * 10}
-        />
-        <div className={cn(styles['quiz-page__button'])}>
-          <Button
-            type='primary'
-            htmlType='button'
-            onClick={() => onFinish()}
-            disabled={state.isFinished}
-          >
-            Проверить
-          </Button>
-        </div>
-        <div className={cn(styles['quiz-page__result-card'])}>
-          {state.isFinished && (
-            <ResultCard passed={state.passed} failed={state.failed} />
-          )}
-        </div>
+        {!state.isStarted ? (
+          <div>
+            <Button type='primary' onClick={onStartButtonClick}>
+              Начать
+            </Button>
+          </div>
+        ) : (
+          <div>
+            {cropedQuestions.map((question, index) => (
+              <Question
+                key={question.text}
+                text={question.text}
+                answers={question.answers}
+                questionNumber={
+                  index + questionsOnPageCount * (currentPage - 1) + 1
+                }
+              />
+            ))}
+            <Pagination
+              current={currentPage}
+              onChange={onPageChange}
+              total={totalPages * 10}
+            />
+            <div className={cn(styles['quiz-page__button'])}>
+              {state.isFinished ? (
+                <Button
+                  type='primary'
+                  htmlType='button'
+                  onClick={() => onRestartButtonClick()}
+                >
+                  Начать сначала
+                </Button>
+              ) : (
+                <Button
+                  type='primary'
+                  htmlType='button'
+                  onClick={() => onFinish()}
+                >
+                  Проверить
+                </Button>
+              )}
+            </div>
+            <div className={cn(styles['quiz-page__result-card'])}>
+              {state.isFinished && (
+                <ResultCard passed={state.passed} failed={state.failed} />
+              )}
+            </div>
+          </div>
+        )}
       </Layout.Content>
     </Layout>
   );
