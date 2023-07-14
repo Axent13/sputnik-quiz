@@ -18,6 +18,14 @@ const QuizPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const isLoggedIn = localStorageService.getUserEmail();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/');
+    }
+  }, []);
+
   useEffect(() => {
     const correctAnswers = questions.map((question) => question.correctAnswer);
     dispatch(getCorrectAnswers({ correctAnswers }));

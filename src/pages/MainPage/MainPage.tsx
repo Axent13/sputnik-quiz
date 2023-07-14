@@ -1,7 +1,7 @@
 import { Layout, Row } from 'antd';
 import LoginModal from 'components/LoginModal/LoginModal';
 import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './MainPage.module.scss';
 import cn from 'classnames';
 import WelcomeCard from 'components/WelcomeCard/WelcomeCard';
@@ -18,6 +18,14 @@ const MainPage = () => {
   const [isLogining, setIsLogining] = useState(true);
   const [isModalOpened, setIsModalOpened] = useState(false);
   const navigate = useNavigate();
+
+  const isLoggedIn = localStorageService.getUserEmail();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('quiz');
+    }
+  }, []);
 
   const submitLoginForm = async (values: IUserLoginInfo) => {
     setIsModalOpened(false);
