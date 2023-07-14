@@ -7,6 +7,7 @@ import cn from 'classnames';
 import WelcomeCard from 'components/WelcomeCard/WelcomeCard';
 import authService from 'services/auth.service';
 import localStorageService from 'services/localStorage.service';
+import { useNavigate } from 'react-router-dom';
 
 interface IUserLoginInfo {
   email: string;
@@ -16,19 +17,20 @@ interface IUserLoginInfo {
 const MainPage = () => {
   const [isLogining, setIsLogining] = useState(true);
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const navigate = useNavigate();
 
   const submitLoginForm = async (values: IUserLoginInfo) => {
     setIsModalOpened(false);
     const data = await authService.login(values);
-    console.log(data);
     localStorageService.setTokens(data);
+    navigate('quiz');
   };
 
   const submitRegistrationForm = async (values: IUserLoginInfo) => {
     setIsModalOpened(false);
     const data = await authService.register(values);
-    console.log(data);
     localStorageService.setTokens(data);
+    navigate('quiz');
   };
 
   const closeModal = () => {
@@ -52,40 +54,42 @@ const MainPage = () => {
   };
 
   return (
-    <Layout.Content>
-      {isLogining ? (
-        <LoginModal
-          onLogin={submitLoginForm}
-          onCancel={closeModal}
-          isModalOpened={isModalOpened}
-          onFinish={successingLogin}
-          onFinishFailed={failingLogin}
-          switchFormText='Зарегистрироваться'
-          onSwitchForm={() => setIsLogining(false)}
-        />
-      ) : (
-        <RegistrationModal
-          onRegistration={submitRegistrationForm}
-          onCancel={closeModal}
-          isModalOpened={isModalOpened}
-          onFinish={successingRegistration}
-          onFinishFailed={failingRegistration}
-          switchFormText='Войти'
-          onSwitchForm={() => setIsLogining(true)}
-        />
-      )}
-      <Row
-        align={'middle'}
-        justify={'center'}
-        className={cn(styles['main-page'])}
-      >
-        <WelcomeCard
-          onClick={() => {
-            setIsModalOpened(true);
-          }}
-        />
-      </Row>
-    </Layout.Content>
+    <Layout>
+      <Layout.Content>
+        {isLogining ? (
+          <LoginModal
+            onLogin={submitLoginForm}
+            onCancel={closeModal}
+            isModalOpened={isModalOpened}
+            onFinish={successingLogin}
+            onFinishFailed={failingLogin}
+            switchFormText='Зарегистрироваться'
+            onSwitchForm={() => setIsLogining(false)}
+          />
+        ) : (
+          <RegistrationModal
+            onRegistration={submitRegistrationForm}
+            onCancel={closeModal}
+            isModalOpened={isModalOpened}
+            onFinish={successingRegistration}
+            onFinishFailed={failingRegistration}
+            switchFormText='Войти'
+            onSwitchForm={() => setIsLogining(true)}
+          />
+        )}
+        <Row
+          align={'middle'}
+          justify={'center'}
+          className={cn(styles['main-page'])}
+        >
+          <WelcomeCard
+            onClick={() => {
+              setIsModalOpened(true);
+            }}
+          />
+        </Row>
+      </Layout.Content>
+    </Layout>
   );
 };
 

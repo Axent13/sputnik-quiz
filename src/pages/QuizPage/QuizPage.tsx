@@ -8,12 +8,15 @@ import { finishQuiz, getCorrectAnswers } from 'store/actions/answers';
 import styles from './QuizPage.module.scss';
 import ResultCard from 'components/ResultCard/ResultCard';
 import { paginate } from '../../utils/paginate';
-import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import localStorageService from 'services/localStorage.service';
+import { useNavigate } from 'react-router-dom';
 
 const QuizPage = () => {
   const state = useTypedSelector((state) => state.answers);
+  const userEmail = localStorageService.getUserEmail();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const correctAnswers = questions.map((question) => question.correctAnswer);
@@ -38,13 +41,21 @@ const QuizPage = () => {
     setCurrentPage(page);
   };
 
+  const onLogoutClick = () => {
+    localStorageService.removeAuthData();
+    navigate('/');
+  };
+
   return (
     <Layout>
-      <Layout.Header>
-        <NavLink to='/'>Выйти</NavLink>
+      <Layout.Header className={cn(styles['quiz-page__header'])}>
+        {userEmail ?? 'Гость'}
+        <Button type='primary' onClick={onLogoutClick}>
+          Выйти
+        </Button>
       </Layout.Header>
-      <Layout.Content className={cn(styles['quizpage__content'])}>
-        <Typography.Title className={cn(styles['quizpage__title'])}>
+      <Layout.Content className={cn(styles['quiz-page__content'])}>
+        <Typography.Title className={cn(styles['quiz-page__title'])}>
           Тест на знание Git
         </Typography.Title>
         {cropedQuestions.map((question, index) => (
@@ -62,7 +73,7 @@ const QuizPage = () => {
           onChange={onPageChange}
           total={totalPages * 10}
         />
-        <div className={cn(styles['quizpage__button'])}>
+        <div className={cn(styles['quiz-page__button'])}>
           <Button
             type='primary'
             htmlType='button'
@@ -72,7 +83,7 @@ const QuizPage = () => {
             Проверить
           </Button>
         </div>
-        <div className={cn(styles['quizpage__result-card'])}>
+        <div className={cn(styles['quiz-page__result-card'])}>
           {state.isFinished && (
             <ResultCard passed={state.passed} failed={state.failed} />
           )}
