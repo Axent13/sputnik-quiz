@@ -16,6 +16,7 @@ import { paginate } from '../../utils/paginate';
 import cn from 'classnames';
 import localStorageService from 'services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
+import TimerBlock from 'components/TimerBlock/TimerBlock';
 
 const QuizPage = () => {
   const state = useTypedSelector((state) => state.answers);
@@ -70,6 +71,9 @@ const QuizPage = () => {
 
   return (
     <Layout>
+      {state.isStarted && (
+        <TimerBlock milliseconds={5} timerStopped={state.isFinished} />
+      )}
       <Layout.Header className={cn(styles['quiz-page__header'])}>
         {userEmail ?? 'Гость'}
         <Button type='primary' onClick={onLogoutClick}>
