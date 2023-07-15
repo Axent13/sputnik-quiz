@@ -1,0 +1,11 @@
+.timer-block {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  text-align: center;
+
+  &__time {
+    font-size: 2em;
+    margin-bottom: 0 !important;
+  }
+}

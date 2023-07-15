@@ -20,8 +20,20 @@ export const getCorrectAnswers = (data: { correctAnswers: number[] }) => {
   };
 };
 
+export const startQuiz = () => {
+  return {
+    type: 'START_QUIZ',
+  };
+};
+
 export const finishQuiz = () => {
   return {
     type: 'FINISH_QUIZ',
+  };
+};
+
+export const restart = () => {
+  return {
+    type: 'RESTART',
   };
 };
