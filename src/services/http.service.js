@@ -36,6 +36,7 @@ http.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 function transformData(data) {
   return data && !data._id
     ? Object.keys(data).map((key) => ({
@@ -43,6 +44,7 @@ function transformData(data) {
       }))
     : data;
 }
+
 http.interceptors.response.use(
   (res) => {
     if (configFile.isFireBase) {
@@ -62,6 +64,7 @@ http.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 const httpService = {
   get: http.get,
   post: http.post,

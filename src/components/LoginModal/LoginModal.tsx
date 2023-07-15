@@ -6,8 +6,6 @@ interface ILoginModal {
   onLogin(values: unknown): typeof values;
   onCancel(): void;
   isModalOpened: boolean;
-  onFinish(): void;
-  onFinishFailed(): void;
   switchFormText: string;
   onSwitchForm(): void;
 }
@@ -16,8 +14,6 @@ const LoginModal = ({
   onLogin,
   onCancel,
   isModalOpened,
-  onFinish,
-  onFinishFailed,
   switchFormText,
   onSwitchForm,
 }: ILoginModal) => {
@@ -46,8 +42,6 @@ const LoginModal = ({
       <Form
         form={form}
         name='login-form'
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 20 }}
       >
