@@ -56,6 +56,7 @@ const QuizPage = () => {
   };
 
   const onLogoutClick = () => {
+    dispatch(restart());
     localStorageService.removeAuthData();
     navigate('/');
   };
