@@ -62,7 +62,6 @@ const QuizPage = () => {
 
   const onStartButtonClick = () => {
     dispatch(startQuiz());
-    console.log(state);
   };
 
   const onRestartButtonClick = () => {
@@ -72,7 +71,7 @@ const QuizPage = () => {
   return (
     <Layout>
       {state.isStarted && (
-        <TimerBlock milliseconds={5} timerStopped={state.isFinished} />
+        <TimerBlock maxTime={600} timerStopped={state.isFinished} />
       )}
       <Layout.Header className={cn(styles['quiz-page__header'])}>
         {userEmail ?? 'Гость'}
@@ -85,7 +84,7 @@ const QuizPage = () => {
           Тест на знание Git
         </Typography.Title>
         {!state.isStarted ? (
-          <div>
+          <div className={cn(styles['quiz-page__start-button-container'])}>
             <Button type='primary' onClick={onStartButtonClick}>
               Начать
             </Button>
