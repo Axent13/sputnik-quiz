@@ -4,12 +4,12 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAnswer } from 'store/actions/answers';
 
-interface IOptions {
+interface CheckboxGroupProps {
   options: string[];
   questionNumber: number;
 }
 
-const CheckboxGroup = ({ options, questionNumber }: IOptions) => {
+const CheckboxGroup = ({ options, questionNumber }: CheckboxGroupProps) => {
   const [activeCheckbox, setActiveCheckbox] = useState(null);
   const dispatch = useDispatch();
 

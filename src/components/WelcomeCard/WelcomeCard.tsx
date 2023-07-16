@@ -3,11 +3,11 @@ import React from 'react';
 import styles from './WelcomeCard.module.scss';
 import cn from 'classnames';
 
-interface IWelcomeCard {
+interface WelcomeCardProps {
   onClick(): void;
 }
 
-const WelcomeCard = ({ onClick }: IWelcomeCard) => {
+const WelcomeCard = ({ onClick }: WelcomeCardProps) => {
   return (
     <Card className={cn(styles['welcome-card'])}>
       <Typography.Title className={cn(styles['welcome-card__title'])}>

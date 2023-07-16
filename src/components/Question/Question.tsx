@@ -4,13 +4,13 @@ import CheckboxGroup from 'components/CheckboxGroup/CheckboxGroup';
 import styles from './Question.module.scss';
 import cn from 'classnames';
 
-interface IQuestion {
+interface QuestionProps {
   text: string;
   answers: string[];
   questionNumber: number;
 }
 
-const Question = ({ text, answers, questionNumber }: IQuestion) => {
+const Question = ({ text, answers, questionNumber }: QuestionProps) => {
   return (
     <div className={cn(styles['question'])}>
       <Card title={`Вопрос №${questionNumber}`}>

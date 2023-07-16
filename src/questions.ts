@@ -1,10 +1,10 @@
-interface IQuestions {
+interface Questions {
   text: string;
   answers: string[];
   correctAnswer: number;
 }
 
-export const questions: IQuestions[] = [
+export const questions: Questions[] = [
   {
     text: 'Как вывести список удалённых репозиториев с именем и url?',
     answers: ['git repository', 'git show', 'git remote', 'git remote -v'],

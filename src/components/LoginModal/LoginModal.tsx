@@ -2,7 +2,7 @@ import { Form, Input } from 'antd';
 import AuthModal from 'components/AuthModal/AuthModal';
 import React from 'react';
 
-interface ILoginModal {
+interface LoginModalProps {
   onLogin(values: unknown): typeof values;
   onCancel(): void;
   isModalOpened: boolean;
@@ -16,7 +16,7 @@ const LoginModal = ({
   isModalOpened,
   switchFormText,
   onSwitchForm,
-}: ILoginModal) => {
+}: LoginModalProps) => {
   const [form] = Form.useForm();
 
   return (

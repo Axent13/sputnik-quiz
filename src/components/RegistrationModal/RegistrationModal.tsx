@@ -2,7 +2,7 @@ import { Form, Input } from 'antd';
 import AuthModal from 'components/AuthModal/AuthModal';
 import React from 'react';
 
-interface IRegistrationModal {
+interface RegistrationModalProps {
   onRegistration(values: unknown): typeof values;
   onCancel(): void;
   isModalOpened: boolean;
@@ -16,7 +16,7 @@ const RegistrationModal = ({
   isModalOpened,
   switchFormText,
   onSwitchForm,
-}: IRegistrationModal) => {
+}: RegistrationModalProps) => {
   const [form] = Form.useForm();
 
   return (
