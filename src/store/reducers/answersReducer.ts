@@ -1,25 +1,6 @@
-const ADD_ANSWER = 'ADD_ANSWER';
-const START_QUIZ = 'START_QUIZ';
-const FINISH_QUIZ = 'FINISH_QUIZ';
-const GET_CORRECT_ANSWERS = 'GET_CORRECT_ANSWERS';
-const RESTART = 'RESTART';
+import { AnswersAction, AnswersActionTypes, AnswersState } from 'types/answers';
 
-interface IAnswersState {
-  userAnswers: number[];
-  correctAnswers: number[];
-  isStarted: boolean;
-  startTime: Date;
-  isFinished: boolean;
-  passed: number;
-  failed: number;
-}
-
-interface IAnswersAction {
-  type: string;
-  payload?: any;
-}
-
-const initialState: IAnswersState = {
+const initialState: AnswersState = {
   userAnswers: [],
   correctAnswers: [],
   isStarted: false,
@@ -31,23 +12,23 @@ const initialState: IAnswersState = {
 
 export const answersReducer = (
   state = initialState,
-  action: IAnswersAction
-): IAnswersState => {
+  action: AnswersAction
+): AnswersState => {
   switch (action.type) {
-    case ADD_ANSWER:
+    case AnswersActionTypes.ADD_ANSWER:
       state.userAnswers[action.payload.questionNumber] =
         action.payload.userAnswer;
       return state;
-    case GET_CORRECT_ANSWERS:
+    case AnswersActionTypes.GET_CORRECT_ANSWERS:
       return { ...state, correctAnswers: action.payload.correctAnswers };
-    case START_QUIZ:
+    case AnswersActionTypes.START_QUIZ:
       state.isStarted = true;
       state.startTime = new Date();
       state.userAnswers = [];
       state.isFinished = false;
 
       return { ...state };
-    case FINISH_QUIZ:
+    case AnswersActionTypes.FINISH_QUIZ:
       state.passed = 0;
       state.failed = 0;
       state.correctAnswers.forEach((answer, index) => {
@@ -59,7 +40,7 @@ export const answersReducer = (
       });
 
       return { ...state, isFinished: true };
-    case RESTART:
+    case AnswersActionTypes.RESTART:
       return { ...initialState };
     default:
       return state;
