@@ -19,7 +19,9 @@ import { useNavigate } from 'react-router-dom';
 import TimerBlock from 'components/TimerBlock/TimerBlock';
 
 const QuizPage = () => {
-  const state = useTypedSelector((state) => state.answers);
+  const { isStarted, isFinished, passed, failed } = useTypedSelector(
+    (state) => state.answers
+  );
   const userEmail = localStorageService.getUserEmail();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -75,9 +77,7 @@ const QuizPage = () => {
 
   return (
     <Layout>
-      {state.isStarted && (
-        <TimerBlock maxTime={600} timerStopped={state.isFinished} />
-      )}
+      {isStarted && <TimerBlock maxTime={600} timerStopped={isFinished} />}
       <Layout.Header className={cn(styles['quiz-page__header'])}>
         {userEmail ?? 'Гость'}
         <Button type='primary' onClick={onLogoutClick}>
@@ -88,7 +88,7 @@ const QuizPage = () => {
         <Typography.Title className={cn(styles['quiz-page__title'])}>
           Тест на знание Git
         </Typography.Title>
-        {!state.isStarted ? (
+        {!isStarted ? (
           <div className={cn(styles['quiz-page__start-button-container'])}>
             <Button type='primary' onClick={onStartButtonClick}>
               Начать
@@ -110,7 +110,7 @@ const QuizPage = () => {
               total={totalPages * 10}
             />
             <div className={cn(styles['quiz-page__button'])}>
-              {state.isFinished ? (
+              {isFinished ? (
                 <Button
                   type='primary'
                   htmlType='button'
@@ -125,9 +125,7 @@ const QuizPage = () => {
               )}
             </div>
             <div className={cn(styles['quiz-page__result-card'])}>
-              {state.isFinished && (
-                <ResultCard passed={state.passed} failed={state.failed} />
-              )}
+              {isFinished && <ResultCard passed={passed} failed={failed} />}
             </div>
           </div>
         )}
