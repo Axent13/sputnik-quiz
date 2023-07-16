@@ -50,7 +50,6 @@ const MainPage = () => {
           break;
         default:
           openNotification('Ошибка входа!');
-          console.error(error);
       }
     }
   };
@@ -72,7 +71,6 @@ const MainPage = () => {
           break;
         default:
           openNotification('Ошибка регистрации!');
-          console.error(error);
       }
     }
   };

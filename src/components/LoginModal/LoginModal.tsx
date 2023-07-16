@@ -29,7 +29,7 @@ const LoginModal = ({
             onLogin(values);
           })
           .catch((error) => {
-            console.log('Validate failed:', error);
+            form.scrollToField(error?.errorFields[0]);
           });
       }}
       onCancel={onCancel}
