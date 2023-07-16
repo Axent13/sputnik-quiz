@@ -9,13 +9,13 @@ const httpAuth = axios.create({
   },
 });
 
-interface IUserLoginInfo {
+interface UserLoginInfoProps {
   email: string;
   password: string;
 }
 
 const authService = {
-  register: async ({ email, password }: IUserLoginInfo) => {
+  register: async ({ email, password }: UserLoginInfoProps) => {
     const { data } = await httpAuth.post(`accounts:signUp`, {
       email,
       password,
@@ -23,7 +23,7 @@ const authService = {
     });
     return data;
   },
-  login: async ({ email, password }: IUserLoginInfo) => {
+  login: async ({ email, password }: UserLoginInfoProps) => {
     const { data } = await httpAuth.post(`accounts:signInWithPassword`, {
       email,
       password,

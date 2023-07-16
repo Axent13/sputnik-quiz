@@ -13,7 +13,7 @@ http.interceptors.request.use(
       const containSlash = /\/$/gi.test(config.url);
       config.url =
         (containSlash ? config.url.slice(0, -1) : config.url) + '.json';
-      const expiresDate = localStorageService.getTokenExpiresDate();
+      const expiresDate = parseInt(localStorageService.getTokenExpiresDate());
       const refreshToken = localStorageService.getRefreshToken();
       if (refreshToken && expiresDate < Date.now()) {
         const data = await authService.refresh();
@@ -21,8 +21,8 @@ http.interceptors.request.use(
         localStorageService.setTokens({
           refreshToken: data.refresh_token,
           idToken: data.id_token,
-          expiresIn: data.expires_id,
           localId: data.user_id,
+          email: data.email,
         });
       }
       const accessToken = localStorageService.getAccessToken();
@@ -37,7 +37,8 @@ http.interceptors.request.use(
   }
 );
 
-function transformData(data) {
+function transformData(data: any) {
+  console.log('data', data);
   return data && !data._id
     ? Object.keys(data).map((key) => ({
         ...data[key],
@@ -53,14 +54,6 @@ http.interceptors.response.use(
     return res;
   },
   function (error) {
-    const expectedErrors =
-      error.response &&
-      error.response.status >= 400 &&
-      error.response.status < 500;
-
-    if (!expectedErrors) {
-      console.log(error);
-    }
     return Promise.reject(error);
   }
 );

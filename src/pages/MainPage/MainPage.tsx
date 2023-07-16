@@ -9,7 +9,7 @@ import authService from 'services/auth.service';
 import localStorageService from 'services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
 
-interface IUserLoginInfo {
+interface UserLoginInfoProps {
   email: string;
   password: string;
 }
@@ -36,7 +36,7 @@ const MainPage = () => {
     });
   };
 
-  const submitLoginForm = async (values: IUserLoginInfo) => {
+  const submitLoginForm = async (values: UserLoginInfoProps) => {
     try {
       const data = await authService.login(values);
       localStorageService.setTokens(data);
@@ -50,12 +50,11 @@ const MainPage = () => {
           break;
         default:
           openNotification('Ошибка входа!');
-          console.error(error);
       }
     }
   };
 
-  const submitRegistrationForm = async (values: IUserLoginInfo) => {
+  const submitRegistrationForm = async (values: UserLoginInfoProps) => {
     try {
       const data = await authService.register(values);
       localStorageService.setTokens(data);
@@ -72,7 +71,6 @@ const MainPage = () => {
           break;
         default:
           openNotification('Ошибка регистрации!');
-          console.error(error);
       }
     }
   };

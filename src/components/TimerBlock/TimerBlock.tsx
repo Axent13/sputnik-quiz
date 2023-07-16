@@ -5,12 +5,12 @@ import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 import { finishQuiz } from 'store/actions/answers';
 
-interface ITimerBlock {
+interface TimerBlockProps {
   maxTime: number;
   timerStopped: boolean;
 }
 
-const TimerBlock = ({ maxTime, timerStopped }: ITimerBlock) => {
+const TimerBlock = ({ maxTime, timerStopped }: TimerBlockProps) => {
   const dispatch = useDispatch();
   const [time, setTime] = useState(maxTime);
   const [timerId, setTimerId] = useState(null);

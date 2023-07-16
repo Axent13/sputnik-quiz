@@ -1,9 +1,11 @@
+import { AnswersActionTypes } from 'types/answers';
+
 export const addAnswer = (data: {
   questionNumber: number;
   userAnswer: number;
 }) => {
   return {
-    type: 'ADD_ANSWER',
+    type: AnswersActionTypes.ADD_ANSWER,
     payload: {
       questionNumber: data.questionNumber,
       userAnswer: data.userAnswer,
@@ -13,7 +15,7 @@ export const addAnswer = (data: {
 
 export const getCorrectAnswers = (data: { correctAnswers: number[] }) => {
   return {
-    type: 'GET_CORRECT_ANSWERS',
+    type: AnswersActionTypes.GET_CORRECT_ANSWERS,
     payload: {
       correctAnswers: data.correctAnswers,
     },
@@ -22,18 +24,18 @@ export const getCorrectAnswers = (data: { correctAnswers: number[] }) => {
 
 export const startQuiz = () => {
   return {
-    type: 'START_QUIZ',
+    type: AnswersActionTypes.START_QUIZ,
   };
 };
 
 export const finishQuiz = () => {
   return {
-    type: 'FINISH_QUIZ',
+    type: AnswersActionTypes.FINISH_QUIZ,
   };
 };
 
 export const restart = () => {
   return {
-    type: 'RESTART',
+    type: AnswersActionTypes.RESTART,
   };
 };

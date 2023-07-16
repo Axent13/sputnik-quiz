@@ -1,12 +1,12 @@
 import { Card, Typography } from 'antd';
 import React from 'react';
 
-interface IResultCard {
+interface ResultCardProps {
   passed: number;
   failed: number;
 }
 
-const ResultCard = ({ passed, failed }: IResultCard) => {
+const ResultCard = ({ passed, failed }: ResultCardProps) => {
   return (
     <Card title='Ваш результат:'>
       <Typography.Paragraph>

@@ -3,7 +3,7 @@ import { Button, Modal, Typography } from 'antd';
 import cn from 'classnames';
 import styles from './AuthModal.module.scss';
 
-interface IAuthModal {
+interface AuthModalProps {
   title: string;
   onOk(): void;
   onCancel(): void;
@@ -23,7 +23,7 @@ const AuthModal = ({
   children,
   switchFormText,
   onSwitchForm,
-}: IAuthModal) => {
+}: AuthModalProps) => {
   return (
     <Modal
       open={isOpened}
