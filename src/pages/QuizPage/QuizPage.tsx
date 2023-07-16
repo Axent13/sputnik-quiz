@@ -69,6 +69,10 @@ const QuizPage = () => {
     dispatch(restart());
   };
 
+  const getQuestionNumber = (index: number) => {
+    return index + questionsOnPageCount * (currentPage - 1) + 1;
+  };
+
   return (
     <Layout>
       {state.isStarted && (
@@ -97,9 +101,7 @@ const QuizPage = () => {
                 key={question.text}
                 text={question.text}
                 answers={question.answers}
-                questionNumber={
-                  index + questionsOnPageCount * (currentPage - 1) + 1
-                }
+                questionNumber={getQuestionNumber(index)}
               />
             ))}
             <Pagination
