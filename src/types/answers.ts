@@ -2,7 +2,6 @@ export interface AnswersState {
   userAnswers: number[];
   correctAnswers: number[];
   isStarted: boolean;
-  startTime: Date;
   isFinished: boolean;
   passed: number;
   failed: number;

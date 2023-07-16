@@ -4,7 +4,6 @@ const initialState: AnswersState = {
   userAnswers: [],
   correctAnswers: [],
   isStarted: false,
-  startTime: null,
   isFinished: false,
   passed: 0,
   failed: 0,
@@ -23,7 +22,6 @@ export const answersReducer = (
       return { ...state, correctAnswers: action.payload.correctAnswers };
     case AnswersActionTypes.START_QUIZ:
       state.isStarted = true;
-      state.startTime = new Date();
       state.userAnswers = [];
       state.isFinished = false;
 
