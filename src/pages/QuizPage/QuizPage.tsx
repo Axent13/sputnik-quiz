@@ -114,16 +114,12 @@ const QuizPage = () => {
                 <Button
                   type='primary'
                   htmlType='button'
-                  onClick={() => onRestartButtonClick()}
+                  onClick={onRestartButtonClick}
                 >
                   Начать сначала
                 </Button>
               ) : (
-                <Button
-                  type='primary'
-                  htmlType='button'
-                  onClick={() => onFinish()}
-                >
+                <Button type='primary' htmlType='button' onClick={onFinish}>
                   Проверить
                 </Button>
               )}
