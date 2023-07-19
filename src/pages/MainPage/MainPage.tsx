@@ -1,4 +1,4 @@
-import { Layout, Row, notification } from 'antd';
+import { Layout, Row } from 'antd';
 import LoginModal from 'components/LoginModal/LoginModal';
 import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
 import React, { useState, useEffect } from 'react';
@@ -8,7 +8,7 @@ import WelcomeCard from 'components/WelcomeCard/WelcomeCard';
 import authService from 'services/auth.service';
 import localStorageService from 'services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
-import ErrorHandler from 'components/ErrorHandler/ErrorHandler';
+import { useErrorNotification } from 'hooks/useErrorNotification';
 
 interface UserLoginInfoProps {
   email: string;
@@ -28,32 +28,31 @@ const MainPage = () => {
     }
   }, []);
 
-  const [notificationApi, notificationHolder] = notification.useNotification();
+  const [notification, notificationHolder] = useErrorNotification();
 
   const openNotification = (text: string) => {
-    notificationApi.open({
+    notification.open({
       message: 'Ошибка',
       description: text,
     });
   };
 
   const submitLoginForm = async (values: UserLoginInfoProps) => {
-    // try {
-
-    // } catch (error) {
-    //   // const errorType = error?.response?.data?.error?.message;
-    //   // switch (errorType) {
-    //   //   case 'EMAIL_NOT_FOUND':
-    //   //     openNotification('Пользователь с таким email и паролем не найден!');
-    //   //     break;
-    //   //   default:
-    //   //     openNotification('Ошибка входа!');
-    //   // }
-    // }
-    const data = await authService.login(values);
-    localStorageService.setTokens(data);
-    setIsModalOpened(false);
-    navigate('quiz');
+    try {
+      const data = await authService.login(values);
+      localStorageService.setTokens(data);
+      setIsModalOpened(false);
+      navigate('quiz');
+    } catch (error) {
+      const errorType = error?.response?.data?.error?.message;
+      switch (errorType) {
+        case 'EMAIL_NOT_FOUND':
+          openNotification('Пользователь с таким email и паролем не найден!');
+          break;
+        default:
+          openNotification('Ошибка входа!');
+      }
+    }
   };
 
   const submitRegistrationForm = async (values: UserLoginInfoProps) => {
@@ -81,54 +80,40 @@ const MainPage = () => {
     setIsModalOpened(false);
   };
 
-  const onUnexpectableError = ({ error }: { error: Error }) => {
-    return (
-      <div role='alert'>
-        <p>Что-то пошло не так...</p>
-        <pre style={{ color: 'red' }}>{error.message}</pre>
-        <p>
-          Попробуйте перезагрузить страницу или обратиться в службу поддержки.
-        </p>
-      </div>
-    );
-  };
-
   return (
-    <ErrorHandler fallbackRenderFunction={onUnexpectableError}>
-      <Layout>
-        {notificationHolder}
-        <Layout.Content>
-          {isLogining ? (
-            <LoginModal
-              onLogin={submitLoginForm}
-              onCancel={closeModal}
-              isModalOpened={isModalOpened}
-              switchFormText='Зарегистрироваться'
-              onSwitchForm={() => setIsLogining(false)}
-            />
-          ) : (
-            <RegistrationModal
-              onRegistration={submitRegistrationForm}
-              onCancel={closeModal}
-              isModalOpened={isModalOpened}
-              switchFormText='Войти'
-              onSwitchForm={() => setIsLogining(true)}
-            />
-          )}
-          <Row
-            align={'middle'}
-            justify={'center'}
-            className={cn(styles['main-page'])}
-          >
-            <WelcomeCard
-              onClick={() => {
-                setIsModalOpened(true);
-              }}
-            />
-          </Row>
-        </Layout.Content>
-      </Layout>
-    </ErrorHandler>
+    <Layout>
+      {notificationHolder}
+      <Layout.Content>
+        {isLogining ? (
+          <LoginModal
+            onLogin={submitLoginForm}
+            onCancel={closeModal}
+            isModalOpened={isModalOpened}
+            switchFormText='Зарегистрироваться'
+            onSwitchForm={() => setIsLogining(false)}
+          />
+        ) : (
+          <RegistrationModal
+            onRegistration={submitRegistrationForm}
+            onCancel={closeModal}
+            isModalOpened={isModalOpened}
+            switchFormText='Войти'
+            onSwitchForm={() => setIsLogining(true)}
+          />
+        )}
+        <Row
+          align={'middle'}
+          justify={'center'}
+          className={cn(styles['main-page'])}
+        >
+          <WelcomeCard
+            onClick={() => {
+              setIsModalOpened(true);
+            }}
+          />
+        </Row>
+      </Layout.Content>
+    </Layout>
   );
 };
 
