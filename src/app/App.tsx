@@ -6,7 +6,7 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 
 const App = () => {
   return (
-    <Suspense fallback={'<div>Loading...</div>'}>
+    <Suspense fallback={'Loading...'}>
       <Routes>
         <Route index element={<MainPage />} />
         <Route path='quiz' element={<QuizPage />} />
