@@ -1,5 +1,5 @@
 import { Card, Typography } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './TimerBlock.module.scss';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';

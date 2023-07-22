@@ -1,5 +1,4 @@
 import { Button, Card, Typography } from 'antd';
-import React from 'react';
 import styles from './WelcomeCard.module.scss';
 import cn from 'classnames';
 

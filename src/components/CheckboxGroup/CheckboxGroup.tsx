@@ -1,6 +1,6 @@
 import { Checkbox } from 'antd';
 import { useTypedSelector } from 'hooks/useTypedSelector';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addAnswer } from 'store/actions/answers';
 

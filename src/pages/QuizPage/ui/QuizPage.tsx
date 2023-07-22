@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Layout, Pagination, Typography } from 'antd';
 import Question from 'components/Question/Question';
 import { questions } from 'questions';

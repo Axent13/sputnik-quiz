@@ -1,7 +1,7 @@
 import { Layout, Row } from 'antd';
 import LoginModal from 'components/LoginModal/LoginModal';
 import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './MainPage.module.scss';
 import cn from 'classnames';
 import WelcomeCard from 'components/WelcomeCard/WelcomeCard';

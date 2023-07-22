@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card, Typography } from 'antd';
 import CheckboxGroup from 'components/CheckboxGroup/CheckboxGroup';
 import styles from './Question.module.scss';

@@ -1,6 +1,5 @@
 import { Form, Input } from 'antd';
 import AuthModal from 'components/AuthModal/AuthModal';
-import React from 'react';
 
 interface RegistrationModalProps {
   onRegistration(values: unknown): typeof values;
