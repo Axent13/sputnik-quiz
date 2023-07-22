@@ -1,0 +1,26 @@
+.not-found-page {
+  height: 100vh;
+  text-align: center;
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__card {
+    max-width: fit-content;
+    padding: 0 2em;
+  }
+
+  &__404 {
+    font-size: 5em;
+    font-weight: bold;
+    color: red;
+  }
+
+  &__advise {
+    margin-top: 60px;
+    font-size: 1.5em;
+  }
+}
