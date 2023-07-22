@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Button, Layout, Pagination, Typography } from 'antd';
-import Question from 'components/Question/Question';
-import { questions } from 'questions';
-import { useTypedSelector } from 'hooks/useTypedSelector';
+import { Question } from 'feature/Question';
+import { questions } from 'shared/lib/questions';
+import { useTypedSelector } from 'shared/hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
 import {
   finishQuiz,
   getCorrectAnswers,
   restart,
   startQuiz,
-} from 'store/actions/answers';
+} from 'shared/store/actions/answers';
 import styles from './QuizPage.module.scss';
-import ResultCard from 'components/ResultCard/ResultCard';
-import { paginate } from '../../../utils/paginate';
+import { ResultCard } from 'feature/ResultCard';
+import { paginate } from 'shared/paginate/paginate';
 import cn from 'classnames';
-import localStorageService from 'services/localStorage.service';
+import localStorageService from 'shared/services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
-import TimerBlock from 'components/TimerBlock/TimerBlock';
+import { TimerBlock } from 'feature/TimerBlock';
 
 const QuizPage = () => {
   const { isStarted, isFinished, passed, failed } = useTypedSelector(

@@ -1,14 +1,14 @@
 import { Layout, Row } from 'antd';
-import LoginModal from 'components/LoginModal/LoginModal';
-import RegistrationModal from 'components/RegistrationModal/RegistrationModal';
+import { LoginModal } from 'feature/LoginModal/ui/LoginModal';
+import { RegistrationModal } from 'feature/RegistrationModal/ui/RegistrationModal';
 import { useState, useEffect } from 'react';
 import styles from './MainPage.module.scss';
 import cn from 'classnames';
-import WelcomeCard from 'components/WelcomeCard/WelcomeCard';
-import authService from 'services/auth.service';
-import localStorageService from 'services/localStorage.service';
+import { WelcomeCard } from 'widgets/WelcomeCard';
+import authService from 'shared/services/auth.service';
+import localStorageService from 'shared/services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
-import { useErrorNotification } from 'hooks/useErrorNotification';
+import { useErrorNotification } from 'shared/hooks/useErrorNotification';
 
 interface UserLoginInfoProps {
   email: string;

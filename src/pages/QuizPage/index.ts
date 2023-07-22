@@ -1,3 +1,1 @@
-import { QuizPageAsync } from './ui/QuizPage.async';
-
-export { QuizPageAsync as QuizPage };
+export { QuizPageAsync as QuizPage } from './ui/QuizPage.async';
