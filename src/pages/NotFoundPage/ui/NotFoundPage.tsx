@@ -11,11 +11,11 @@ const NotFoundPage = () => {
           <Typography.Paragraph className={cn(styles['not-found-page__404'])}>
             404
           </Typography.Paragraph>
-          <Typography.Title>Старница не найдена... :-(</Typography.Title>
+          <Typography.Title>Страница не найдена... :-(</Typography.Title>
           <Typography.Paragraph
             className={cn(styles['not-found-page__advise'])}
           >
-            Попробуйте
+            Попробуйте{' '}
             <NavLink className={cn(styles['not-found-page__link'])} to={'/'}>
               перейти на главную
             </NavLink>
