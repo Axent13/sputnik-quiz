@@ -38,7 +38,6 @@ http.interceptors.request.use(
 );
 
 function transformData(data: any) {
-  console.log('data', data);
   return data && !data._id
     ? Object.keys(data).map((key) => ({
         ...data[key],

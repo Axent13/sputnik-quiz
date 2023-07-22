@@ -14,7 +14,6 @@ export function setTokens({
   email,
 }: localStorageItems) {
   const expiresDate = new Date().getTime() + EXPIRES_TIME * 1000;
-  console.log('expiresDate', expiresDate);
   localStorage.setItem(USERID_KEY, localId);
   localStorage.setItem(TOKEN_KEY, idToken);
   localStorage.setItem(REFRESH_KEY, refreshToken);
