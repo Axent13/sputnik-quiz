@@ -12,7 +12,7 @@ import {
 } from 'store/actions/answers';
 import styles from './QuizPage.module.scss';
 import ResultCard from 'components/ResultCard/ResultCard';
-import { paginate } from '../../utils/paginate';
+import { paginate } from '../../../utils/paginate';
 import cn from 'classnames';
 import localStorageService from 'services/localStorage.service';
 import { useNavigate } from 'react-router-dom';
