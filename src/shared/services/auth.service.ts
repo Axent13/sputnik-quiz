@@ -3,7 +3,7 @@ import configFile from 'app/config/config.json';
 import localStorageService from './localStorage.service';
 
 const httpAuth = axios.create({
-  baseURL: 'https://identitytoolkit.googleapis.com/v1/',
+  baseURL: configFile.apiEndpoint,
   params: {
     key: configFile.fireBaseApiKey,
   },
